@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Kate's Pace for Syberia 3: a BepInEx 5 plugin (Unity 5.4 is too old for MelonLoader / LibriaMods.Unity.Loader).
+       References come from the game folder: install BepInEx 5 in the game first. -->
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <Version>0.1.0</Version>
+    <DebugType>none</DebugType>
+    <Syberia3Dir Condition="'$(Syberia3Dir)' == ''">D:\Games\Syberia 3</Syberia3Dir>
+  </PropertyGroup>
+  <Import Project="..\..\LibriaMods.user.props" Condition="Exists('..\..\LibriaMods.user.props')" />
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net35" Version="1.0.3" PrivateAssets="all" />
+    <Reference Include="UnityEngine" HintPath="$(Syberia3Dir)\Syberia3_Data\Managed\UnityEngine.dll" Private="false" />
+    <Reference Include="BepInEx" HintPath="$(Syberia3Dir)\BepInEx\core\BepInEx.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="InstallToGame" AfterTargets="Build" Condition="Exists('$(Syberia3Dir)\BepInEx\core\BepInEx.dll')">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(Syberia3Dir)\BepInEx\plugins" />
+  </Target>
+</Project>
