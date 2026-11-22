@@ -17,5 +17,15 @@ Kate moves with root motion, so her animator is sped up only while she is moving
 2. `LibriaMods.S3.KatesPace.dll` → `BepInEx\plugins`.
 
 ## Build
-Open `LibriaMods.S3.KatesPace.slnx`. References come from the game folder (default `D:\Games\Syberia 3`,
+Open `LibriaMods.S3.KatesPace.slnx`. References come from the game folder (default Steam folder `C:\Program Files (x86)\Steam\steamapps\common\Syberia 3`,
 override `Syberia3Dir` in `..\LibriaMods.user.props`); the build copies the DLL into `BepInEx\plugins`.
+
+For a game installed elsewhere, create `LibriaMods.user.props` in the folder that contains the repos:
+
+```xml
+<Project>
+  <PropertyGroup>
+    <Syberia3Dir>D:\Games\Syberia 3</Syberia3Dir>
+  </PropertyGroup>
+</Project>
+```
